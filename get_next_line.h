@@ -10,9 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	LIBFT_H //para evitar que o mesmo arquivo de cabecalho seja adicionado varias vezes
+#ifndef	LIBFT_H 
 # define LIBFT_H
 
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 10
+#endif
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+char	*get_next_line(int fd);
 
 #endif

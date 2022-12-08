@@ -10,15 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "get_next_line.h"
-#include <fcntl.h>
-#include <unistd.h>
 
 int	main(void)
 {
-	FILE	*file;
+	char	*line;
 	int	fd;
 
 	fd = open("test.txt", O_RDONLY);
@@ -27,7 +23,9 @@ int	main(void)
 		printf("Nao foi possivel ler o arquivo");
 		exit (0);
 	}
-	printf("\n %i", fd);
+	line = get_next_line(fd);
+
+		printf("%d",line[0]);
 
 	close (fd);
 	return (0);
