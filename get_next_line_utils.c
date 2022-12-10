@@ -6,7 +6,7 @@
 /*   By: heolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:38 by heolivei          #+#    #+#             */
-/*   Updated: 2022/12/09 14:51:26 by heolivei         ###   ########.fr       */
+/*   Updated: 2022/12/10 15:05:53 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,44 @@
 int	ft_strlen(char *s)
 {
 	size_t	i;
-
-	i = 0; 
-	while (s != NULL)
+	
+	i = 0;
+       	if(!s)
+		return (0);	
+	while (s[i] != '\0')
 		i++;
 
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;
 	size_t	k;
+	printf("%i \n", ft_strlen(s1));
+	printf("%i \n", ft_strlen(s2));
+	printf("%s \n", s2);
 
 	i = 0;
 	k = 0;
-	if (!s1 || !s2)
+	if (!s2)
+		return (NULL);
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	
+	printf("%c", s2[i]);
+	while (s1[i] != '\0')
+	{
+		str[i] = s1[i];
+		i++;
+	}
+		while (s2[k] != '\0')
+		{
+			str[i] = s2[k];
+			i++;
+			k++;
+		}
+	str[i] = '\0';
+	printf("%s \n", str);
+	return (str);
 }
