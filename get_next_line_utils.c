@@ -6,7 +6,7 @@
 /*   By: heolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:38 by heolivei          #+#    #+#             */
-/*   Updated: 2022/12/10 15:05:53 by heolivei         ###   ########.fr       */
+/*   Updated: 2022/12/11 14:44:46 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,16 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	k = 0;
-	if (!s2)
-		return (NULL);
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	
 	printf("%c", s2[i]);
-	while (s1[i] != '\0')
+	if (s1)
 	{
-		str[i] = s1[i];
-		i++;
+		while (s1[i] != '\0')
+		{
+			str[i] = s1[i];
+			i++;
+		}
 	}
 		while (s2[k] != '\0')
 		{
