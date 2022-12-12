@@ -30,15 +30,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*str;
 	size_t	i;
 	size_t	k;
-	printf("%i \n", ft_strlen(s1));
-	printf("%i \n", ft_strlen(s2));
-	printf("%s \n", s2);
 
 	i = 0;
 	k = 0;
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	
-	printf("%c", s2[i]);
 	if (s1)
 	{
 		while (s1[i] != '\0')
@@ -54,6 +50,5 @@ char	*ft_strjoin(char *s1, char *s2)
 			k++;
 		}
 	str[i] = '\0';
-	printf("%s \n", str);
 	return (str);
 }

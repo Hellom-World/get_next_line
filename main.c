@@ -25,7 +25,7 @@ int	main(void)
 	}
 	line = get_next_line(fd);
 
-		printf("Retorno do get_next_line: %s",line);
+		printf("Retorno do get_next_line: %s \n",line);
 
 	close (fd);
 	return (0);
