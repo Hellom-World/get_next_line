@@ -6,7 +6,7 @@
 /*   By: heolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:23 by heolivei          #+#    #+#             */
-/*   Updated: 2022/12/11 14:35:12 by heolivei         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:58:43 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@ char	*get_next_line(int fd)
 	long int	i;
 	int		j;
 	int		k;
-
-	read_frase = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	read_frase = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if(!read_frase)
+		return (0);
+		
 	i = read(fd, read_frase, BUFFER_SIZE);
+	
 	read_frase[i + 1] = '\0';
 	
 	j = 0;
