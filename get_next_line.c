@@ -6,17 +6,18 @@
 /*   By: heolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:23 by heolivei          #+#    #+#             */
-/*   Updated: 2022/12/14 20:58:43 by heolivei         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:22:02 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 char	*get_next_line(int fd)
 {
 	char	*read_frase;
 	static char	*frase;
-	long int	i;
+	long int	int_read;
 	int		j;
 	int		k;
 	
@@ -25,17 +26,15 @@ char	*get_next_line(int fd)
 	read_frase = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if(!read_frase)
 		return (0);
-		
-	i = read(fd, read_frase, BUFFER_SIZE);
-	
-	read_frase[i + 1] = '\0';
-	
-	j = 0;
-	while (read_frase[j] != '\n' && read_frase[j] != '\0')
+	int_read = 1;
+	frase = malloc(sizeof(char));
+	while ( int_read != 0)
 	{
-		j++;
+		int_read = read(fd, read_frase, BUFFER_SIZE);
+		read_frase[int_read] = '\0';
+		frase = ft_strjoin(frase, read_frase);
+		if (ft_strchr(read_frase, '\n'))
+			break;
 	}
-
-	frase = ft_strjoin(frase, read_frase);
 	return (frase);
 }
