@@ -6,7 +6,7 @@
 /*   By: heolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:39:48 by heolivei          #+#    #+#             */
-/*   Updated: 2022/12/15 16:56:43 by heolivei         ###   ########.fr       */
+/*   Updated: 2022/12/17 20:36:15 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,19 @@ int	main(void)
 	char	*s;
 	char	*line;
 	int	fd;
+	int	i;
 	
 	fd = open("test.txt", O_RDONLY);
-	line = get_next_line(fd);
-	
-		printf("Retorno do get_next_line: %s \n",line);
-
+	i = 1;
+	while (1)
+	{
+		line = get_next_line(fd);
+		printf("%s", line);
+		if (!line)
+			break ;
+		free(line);
+		i++;
+	}
 	close (fd);
 	return (0);
 }

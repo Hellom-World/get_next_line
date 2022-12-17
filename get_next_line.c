@@ -6,7 +6,7 @@
 /*   By: heolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:23 by heolivei          #+#    #+#             */
-/*   Updated: 2022/12/15 17:22:02 by heolivei         ###   ########.fr       */
+/*   Updated: 2022/12/17 20:39:50 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ char	*get_next_line(int fd)
 	if(!read_frase)
 		return (0);
 	int_read = 1;
-	frase = malloc(sizeof(char));
-	while ( int_read != 0)
+	if(!frase)
+		frase = malloc(sizeof(char));
+	j = 0;
+	while (int_read != 0)
 	{
 		int_read = read(fd, read_frase, BUFFER_SIZE);
 		read_frase[int_read] = '\0';
@@ -36,5 +38,13 @@ char	*get_next_line(int fd)
 		if (ft_strchr(read_frase, '\n'))
 			break;
 	}
+	while (frase[j] != '\n')
+		j++;
+	
+		while (frase[j] != '\0')
+		{
+			frase[j] = 0;
+			j++;
+		}
 	return (frase);
 }
