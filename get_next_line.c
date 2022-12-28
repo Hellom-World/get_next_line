@@ -6,7 +6,7 @@
 /*   By: heolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:23 by heolivei          #+#    #+#             */
-/*   Updated: 2022/12/26 19:28:09 by heolivei         ###   ########.fr       */
+/*   Updated: 2022/12/28 21:44:44 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,24 @@ char	*get_next_line(int fd)
 }
 char	*ft_brute_line(int fd, char *brute_line)
 {
-	char	*vl;
+	char	*vleitura;
 	int	nbl;
 
-	vl = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!vl)
+	vleitura = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!vleitura)
 		return (0);
 	nbl = 1;
-	while (ft_strchr(brute_line, '\n') && brute_line != '\0')
+	while (ft_strchr(brute_line, '\n') && nbl != 0)
 	{
-		nbl = read(fd, vl, BUFFER_SIZE)
+		nbl = read(fd, vleitura, BUFFER_SIZE);
+		if (nbl == -1)
+		{
+			free(vl);
+			return (0);
+		}
+		vleitura[nbl] = '\0';
+		brute_line = strjoin(brute_line, vleitura);
 	}
+	free(vleitura);
+	return (brute_line);
 }
