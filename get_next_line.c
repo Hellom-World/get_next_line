@@ -6,7 +6,7 @@
 /*   By: heolivei <heolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:23 by heolivei          #+#    #+#             */
-/*   Updated: 2023/01/04 13:31:00 by heolivei         ###   ########.fr       */
+/*   Updated: 2023/01/05 12:17:36 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ char	*get_next_line(int fd)
 	brute_line = rest_line(brute_line);
 	return (liquid_line);
 }
+
 char	*ft_brute_line(int fd, char *brute_line)
 {
 	char	*vleitura;
-	int	nbl;
+	int		nbl;
 
 	vleitura = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!vleitura)
@@ -56,28 +57,24 @@ char	*ft_liquid_line(char *vs)
 	char	*str;
 
 	i = 0;
-	if(!vs)
+	if (!vs)
 		return (0);
-
 	while (vs[i] && vs[i] != '\n')
 		i++;
 	str = malloc(sizeof(char) * (i + 2));
-	if(!str)
+	if (!str)
 		return (0);
-
 	i = 0;
 	while (vs[i] && vs[i] != '\n')
 	{
 		str[i] = vs[i];
 		i++;
 	}
-
-	if(vs[i] == '\n')
+	if (vs[i] == '\n')
 	{
-		str[i] == '\n'; 
+		str[i] == '\n';
 		i++;
 	}
-
 	str[i] = '\0';
 	return (str);
 }

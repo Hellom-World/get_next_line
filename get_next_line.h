@@ -5,28 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: heolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 15:37:47 by heolivei          #+#    #+#             */
-/*   Updated: 2022/12/15 16:14:26 by heolivei         ###   ########.fr       */
+/*   Created: 2023/01/05 15:02:24 by heolivei          #+#    #+#             */
+/*   Updated: 2023/01/05 15:08:58 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	LIBFT_H 
-# define LIBFT_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
 
-char	*ft_strchr(const char *s, int c);
 char	*get_next_line(int fd);
+char	*ft_brute_line(int fd, char *brute_line);
+char	*ft_liquid_line(char *vs);
+char	*rest_line(char *brute_line);
+
+int		ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
-
-int	ft_strlen(char *s);
-
+char	*ft_strchr(char *s, int c);
 
 #endif
