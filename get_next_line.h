@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heolivei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: heolivei <heolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:47 by heolivei          #+#    #+#             */
-/*   Updated: 2022/12/15 16:14:26 by heolivei         ###   ########.fr       */
+/*   Updated: 2023/01/07 13:17:46 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-char	*ft_strchr(const char *s, int c);
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
+char    *ft_brute_line(int fd, char *brute_line);
+char    *fd_liquid_line(char *brute_line);
+char    *ft_rest_line(char *brute_line);
 
-int	ft_strlen(char *s);
+int     ft_strlen(char *s);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(char *s, int c);
 
 
 #endif
