@@ -6,11 +6,89 @@
 /*   By: heolivei <heolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:23 by heolivei          #+#    #+#             */
-/*   Updated: 2023/01/05 12:17:36 by heolivei         ###   ########.fr       */
+/*   Updated: 2023/01/09 22:14:53 by heolivei         ###   ########.fr       */
+/*   Updated: 2023/01/08 21:33:56 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_brute_line(int fd, char *brute_line)
+{
+	char	*vleitura;
+	int		nbl;
+
+	vleitura = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!vleitura)
+		return (0);
+	nbl = 1;
+	while (!ft_strchr(brute_line, '\n') && nbl != 0)
+	{
+		nbl = read(fd, vleitura, BUFFER_SIZE);
+		if (nbl == -1)
+		{
+			free(vleitura);
+			return (0);
+		}
+		vleitura[nbl] = '\0';
+		brute_line = ft_strjoin(brute_line, vleitura);
+	}
+	free(vleitura);
+	return (brute_line);
+}
+
+char	*ft_liquid_line(char *brute_line)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	if (!brute_line)
+		return (0);
+	while (brute_line[i] && brute_line[i] != '\n')
+		i++;
+	if (!brute_line)
+		return (0);
+	while (brute_line[i] && brute_line[i] != '\n')
+		i++;
+	str = malloc(sizeof(char) * (i + 2));
+	if (!str)
+		return (0);
+	i = 0;
+	while (brute_line[i] && brute_line[i] != '\n')
+	{
+		str[i] = brute_line[i];
+		i++;
+	}
+	if (brute_line[i] == '\n')
+		str[i++] = '\n';
+	str[i] = '\0';
+	return (str);
+}
+
+char	*ft_rest_line(char *brute_line)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	j = 0;
+	if (!brute_line)
+	{
+		free(brute_line);
+		return (0);
+	}	
+	while (brute_line[i] && brute_line[i] != '\n')
+		i++;
+	str = malloc(sizeof(char) * (ft_strlen(brute_line) - i + 1));
+	i++;
+	while (brute_line[i])
+		str[j++] = brute_line[i++];
+	str[i] = '\0';
+	free(brute_line);
+	return (str);
+}
 
 char	*get_next_line(int fd)
 {
@@ -23,58 +101,6 @@ char	*get_next_line(int fd)
 	if (!brute_line)
 		return (0);
 	liquid_line = ft_liquid_line(brute_line);
-	brute_line = rest_line(brute_line);
+	brute_line = ft_rest_line(brute_line);
 	return (liquid_line);
-}
-
-char	*ft_brute_line(int fd, char *brute_line)
-{
-	char	*vleitura;
-	int		nbl;
-
-	vleitura = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!vleitura)
-		return (0);
-	nbl = 1;
-	while (ft_strchr(brute_line, '\n') && nbl != 0)
-	{
-		nbl = read(fd, vleitura, BUFFER_SIZE);
-		if (nbl == -1)
-		{
-			free(vleitura);
-			return (0);
-		}
-		vleitura[nbl] = '\0';
-		brute_line = strjoin(brute_line, vleitura);
-	}
-	free(vleitura);
-	return (brute_line);
-}
-
-char	*ft_liquid_line(char *vs)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (!vs)
-		return (0);
-	while (vs[i] && vs[i] != '\n')
-		i++;
-	str = malloc(sizeof(char) * (i + 2));
-	if (!str)
-		return (0);
-	i = 0;
-	while (vs[i] && vs[i] != '\n')
-	{
-		str[i] = vs[i];
-		i++;
-	}
-	if (vs[i] == '\n')
-	{
-		str[i] == '\n';
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heolivei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: heolivei <heolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:39:48 by heolivei          #+#    #+#             */
-/*   Updated: 2022/12/21 13:26:46 by heolivei         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:43:18 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(void)
 		printf("%s", line);
 		free(line);
 	}
+	//printf("%s",get_next_line(fd));
 	close (fd);
 	return (0);
 }
