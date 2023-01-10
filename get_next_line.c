@@ -6,7 +6,7 @@
 /*   By: heolivei <heolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:23 by heolivei          #+#    #+#             */
-/*   Updated: 2023/01/09 22:14:53 by heolivei         ###   ########.fr       */
+/*   Updated: 2023/01/10 22:15:56 by heolivei         ###   ########.fr       */
 /*   Updated: 2023/01/08 21:33:56 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -28,6 +28,7 @@ char	*ft_brute_line(int fd, char *brute_line)
 		if (nbl == -1)
 		{
 			free(vleitura);
+			free(brute_line);
 			return (0);
 		}
 		vleitura[nbl] = '\0';
@@ -73,19 +74,23 @@ char	*ft_rest_line(char *brute_line)
 	char	*str;
 
 	i = 0;
-	j = 0;
 	if (!brute_line)
+		return (0);
+	while (brute_line[i] && brute_line[i] != '\n')
+		i++;
+	if (!brute_line[i] || brute_line[i + 1] == '\0')
 	{
 		free(brute_line);
 		return (0);
-	}	
-	while (brute_line[i] && brute_line[i] != '\n')
-		i++;
-	str = malloc(sizeof(char) * (ft_strlen(brute_line) - i + 1));
+	}
+	str = (char *)malloc(sizeof(char) * (ft_strlen(brute_line) - i + 1));
+	if (!str)
+		return (NULL);
 	i++;
+	j = 0;
 	while (brute_line[i])
 		str[j++] = brute_line[i++];
-	str[i] = '\0';
+	str[j] = '\0';
 	free(brute_line);
 	return (str);
 }

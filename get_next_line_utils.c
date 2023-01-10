@@ -6,14 +6,14 @@
 /*   By: heolivei <heolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:37:38 by heolivei          #+#    #+#             */
-/*   Updated: 2023/01/09 22:00:37 by heolivei         ###   ########.fr       */
+/*   Updated: 2023/01/10 22:06:08 by heolivei         ###   ########.fr       */
 /*   Updated: 2023/01/07 13:17:47 by heolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *s)
+size_t	ft_strlen(char *s)
 {
 	size_t	i;
 
@@ -50,6 +50,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[k] != '\0')
 		str[i++] = s2[k++];
 	str[i] = '\0';
+	free(s1);
 	return (str);
 }
 
@@ -68,5 +69,5 @@ char	*ft_strchr(char *s, int c)
 			return ((char *)&s[i]);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
